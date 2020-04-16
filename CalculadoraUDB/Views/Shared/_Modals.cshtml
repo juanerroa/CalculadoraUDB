@@ -1,0 +1,133 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Calculadora UDB</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-justify">
+                Esta herramienta le permite manipular una copia de su expediente académico, permitiendo visualizar como su CUM, Promedio,
+                Avance y Unidades Valorativas cambian con cada modificación que haga en el expediente. De esta manera puede saber cómo
+                sus resultados académicos finalizaran a medida que usted avance en la carrera.<br /><br />
+
+                Cabe destacar que el expediente que puede visualizar en esta herramienta solo es una copia obtenida de su portal académico,
+                en ningún momento las modificaciones que realice surtirán efecto en el expediente real de la universidad.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reestablecerModal" tabindex="-1" role="dialog" aria-labelledby="reestablecerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Reestablecer expediente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Al reestablecer el expediente este volvera a contener la información del portal academico.
+            </div>
+            <div class="modal-footer">
+                <button id="submitReestablecerBtn" type="button" data-dismiss="modal" class="btn btn-info">Reestablecer</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="MateriaModal" tabindex="-1" role="dialog" aria-labelledby="MateriaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="header" class="">
+                <h5 id="title" class="modal-title text-white"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formOptionMateria">
+                <div class="modal-body">
+                    <div class="w-100 d-inline-block text-center mb-4">
+                        <div class="d-inline-block w-25">
+                            <label>Año:</label>
+                            <input required id="Anio" name="Anio" type="number" min="1900" max="2099" step="1" value="@DateTime.Now.Year" class="form-control ml-2" />
+                        </div>
+                        <div class="d-inline-block w-25">
+                            <label>Ciclo:</label>
+                            <input required id="Ciclo" name="Ciclo" type="number" min="1" max="3" step="1" value="1" class="form-control ml-2" />
+                        </div>
+                        <div class="d-inline-block w-25">
+                            <label>Matricula:</label>
+                            <input required id="Matricula" name="Matricula" type="number" min="1" max="6" step="1" value="1" class="form-control ml-2" />
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <label>Asignatura:</label><br />
+                        <select required id="Codigo" name="Codigo" class="form-control d-block m-0 m-auto w-75 ml-2"></select>
+                        <input type="hidden" id="Asignatura" name="Asignatura" />
+                    </div>
+
+                    <div>
+                        <div style="transform:translateX(40%)" class="form-check">
+                            <label style="margin-left:-20px;">
+                                <input id="Retirada" type="checkbox" class="form-check-input" value="false" />
+                                Retirada
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="w-100 d-inline-block text-center mb-4">
+                        <div class="d-inline-block w-25">
+                            <label>Nota:</label>
+                            <input required id="Nota" name="Nota" type="number" step="0.01" placeholder="0.00" class="form-control ml-2" />
+                        </div>
+                        <div style="" class="d-inline-block w-25">
+                            <label>Resultado:</label>
+                            <input required readonly id="Resultado" name="Resultado" class="form-control ml-2" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="submit" type="submit"></button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="cumDeseadoModal" tabindex="-1" role="dialog" aria-labelledby="cumDeseadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Calculo de CUM Deseado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    Esta herramienta calcula la nota que usted necesita obtener en cada una de las asignaturas futuras
+                    para graduarse con el CUM que usted desea.
+                </div>
+                <br />
+                <div class="form-group text-center">
+                    <label class="font-weight-bold" for="cumDeseadoInput">Cum Deseado:</label> <br />
+                    <input id="cumDeseadoInput" type="number" step="0.01" min="0.00" max="10.00" class="form-control m-0 m-auto w-25" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitCumDeseadoBtn" type="button" data-dismiss="modal" class="btn btn-info">Calcular Nota</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+﻿@model CalculadoraUDB.Models.Estudiante
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Calculadora UDB</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="~/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="~/css/flag-icon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="snoAlertBox" class="" data-alert="alert"></div>
+
+    @await Html.PartialAsync("_MiPerfil");
+
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="bg-white text-center navbar-brand-wrapper">
+                <a class="navbar-brand brand-logo" asp-controller="Expediente"><img src="~/images/logo_star_black.png" /></a>
+                <a class="navbar-brand brand-logo-mini" asp-controller="Expediente"><img src="~/images/logo_star_mini.jpg" alt=""></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center">
+                <button class="navbar-toggler navbar-toggler d-none d-lg-block navbar-dark align-self-center mr-3" type="button" data-toggle="minimize">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <form class="form-inline mt-2 mt-md-0 d-none d-lg-block">
+                    <input class="form-control mr-sm-2 search" type="text" placeholder="Buscar...">
+                </form>
+                <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link profile-pic" href="#"><img class="rounded-circle" src="@Model.Perfil.EstudianteImage" alt=""></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-th"></i></a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-dark navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- partial -->
+        <div class="container-fluid">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <!-- partial:partials/_sidebar.html -->
+                <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+                    <div class="user-info">
+                        <img src="@Model.Perfil.EstudianteImage" alt="">
+                        <p class="nombre">@Model.Perfil.Nombre</p>
+                        <p class="apellido">@Model.Perfil.Apellido</p>
+                        <span class="online">@Model.Perfil.Carnet.ToUpper()</span>
+                        <p class="text-center mt-3">@Html.Raw(Model.Expediente.Carrera)</p>
+                    </div>
+                    <hr style="margin-top:-40px; padding-bottom:20px;" />
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Expediente">
+                                <img src="~/images/icons/1.png" alt="">
+                                <span class="menu-title">Calculadora UDB</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Estadisticas">
+                                <img src="~/images/icons/1.png" alt="">
+                                <span class="menu-title">Estadisticas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="cumDeseadoNavItem" class="nav-link" href="#">
+                                <img src="~/images/icons/1.png" alt="">
+                                <span class="menu-title">CUM Deseado</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="reestablecerNavItem" class="nav-link" href="#">
+                                <img src="~/images/icons/2.png" alt="">
+                                <span class="menu-title">Reestablecer</span>
+                            </a>
+                        </li>
+                        <li onclick="LogoutForm.submit();" class="nav-item">
+                            <form id="LogoutForm" asp-controller="Login" asp-action="Logout" method="GET">
+                                <a class="nav-link" href="#">
+                                    <img src="~/images/icons/10.png" alt="">
+                                    <span class="menu-title">Cerrar Sesión</span>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- partial -->
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-dark">
+                                                <i class="fa fa-calculator highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="resultadoCard float-right">
+                                            <p class="card-text text-dark">C.U.M</p>
+                                            <h4 id="cum" class="bold-text">-</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Portal UDB: @Model.Expediente.CumPortal
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-info">
+                                                <i class="fa fa-area-chart highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="resultadoCard float-right">
+                                            <p class="card-text text-dark">Promedio</p>
+                                            <h4 id="promedio" class="bold-text">-</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Portal UDB: @Model.Expediente.PromedioPortal
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-warning">
+                                                <i class="fa fa-graduation-cap highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="resultadoCard float-right">
+                                            <p class="card-text text-dark  ml-2">Avance</p>
+                                            <h4 id="avance" class="bold-text  ml-2">-</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Portal UDB: @Model.Expediente.AvancePortal
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-danger">
+                                                <i class="fa fa-star highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="resultadoCard float-right">
+                                            <p class="card-text text-dark">Unidades Valorativas</p>
+                                            <h4 id="uvGanadas" class="bold-text">-</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> Portal UDB: @Model.Expediente.UvGanadasPortal
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                    <div id="footer">
+                        <h6>
+                            Desarrollador: Juan Carlos Erroa Molina<br>
+                            Ingeniero en Ciencias de la Computación
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5NXz9eVnyJOA81wimI8WYE08kW_JMe8g&callback=initMap" async defer></script>
+    <script src="~/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/js/off-canvas.js"></script>
+    <script src="~/js/hoverable-collapse.js"></script>
+    <script src="~/js/misc.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

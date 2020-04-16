@@ -1,0 +1,50 @@
+﻿@model CalculadoraUDB.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Calculadora de CUM";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+<link href="~/css/Expediente.css" rel="stylesheet" />
+
+@await Html.PartialAsync("_Modals")
+
+<div class="row mb-2">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <h3 class="card-title mb-4 col float-left">Expediente Academico</h3>
+                    <button id="addMateriaBtn" class="btn btn-success text-white mb-3 mr-1 float-right">Agregar Materia</button>
+                    <button class="btn btn-info text-white mb-3 mr-3" data-toggle="modal" data-target="#infoModal">
+                        <i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table id="expedienteTbl" class="table center-aligned-table table-striped">
+                        <thead class="thead-dark">
+                            <tr class="text-primary">
+                                <th id="anio">Año</th>
+                                <th id="ciclo">Ciclo</th>
+                                <th id="codigo">Codigo</th>
+                                <th id="asignatura">Asignatura</th>
+                                <th id="matricula">Matricula</th>
+                                <th id="nota">Nota</th>
+                                <th id="resultado">Resultado</th>
+                                <th id="opciones">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/TableExpediente.js"></script>
+    <script src="~/js/OpcionesExpediente.js"></script>
+}

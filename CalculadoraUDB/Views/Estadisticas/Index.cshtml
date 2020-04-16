@@ -1,0 +1,144 @@
+﻿@model CalculadoraUDB.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Calculadora de CUM";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+<style>
+    .datoEstudiante {
+        padding: 0px 10px 0px 10px;
+    }
+
+    .perfilEstudiante i {
+        padding-top: 12px;
+    }
+
+    .nav-top li .active {
+        font-weight: bold !important;
+        background-color: #008aff !important;
+        color: white !important;
+    }
+
+    .nav-top li:hover {
+        border-bottom: 1px solid #008aff;
+    }
+
+    .perfil {
+        border-right: 1px groove;
+    }
+</style>
+
+@await Html.PartialAsync("_Modals")
+
+<div class="row mb-2">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <h3 class="card-title mb-4">Estaditicas del estudiante</h3>
+                </div>
+                <div class="row">
+                    <div class="perfil col-3 float-left">
+                        <div class="text-center">
+                            <img class="mt-3" src="@Model.Perfil.TutorImage" alt=""><br />
+                            <strong>Tutor:</strong> @Model.Perfil.TutorNombre
+                        </div><br />
+
+                        <div class="text-center">
+                            <h5>Datos del estudiante</h5>
+                        </div>
+                        <hr />
+                        <div class="perfilEstudiante">
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Nombre @Model.Perfil.Apellido</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-id-card" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Carnet.ToUpper()</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Responsable</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Correo</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-address-card" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Direccion</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Municipio</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Departamento</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Telefono</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Celular</div>
+                            </div>
+                            <div class="datoEstudiante row">
+                                <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                                <div class="col p-0 p-2">@Model.Perfil.Nacimiento</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="charts col float-right">
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+                        </figure>
+
+                        <div class="text-center mt-5 mb-3">
+                            <h5>Top 5 de Materias</h5>
+                        </div>
+
+                        <ul class="nav nav-tabs nav-top" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#aprobadas" role="tab">Aprobadas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#reprobadas" role="tab">Reprobadas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#recursadas" role="tab">Recursadas</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="aprobadas" role="tabpanel">
+                                @await Html.PartialAsync("_TopMaterias", (IEnumerable<CalculadoraUDB.Models.MateriaExpediente>)ViewBag.topAprobadas)
+                            </div>
+                            <div class="tab-pane" id="reprobadas" role="tabpanel">
+                                @await Html.PartialAsync("_TopMaterias", (IEnumerable<CalculadoraUDB.Models.MateriaExpediente>)ViewBag.topReprobadas)
+                            </div>
+                            <div class="tab-pane" id="recursadas" role="tabpanel">
+                                @await Html.PartialAsync("_TopMaterias", (IEnumerable<CalculadoraUDB.Models.MateriaExpediente>)ViewBag.topRecursadas)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/OpcionesExpediente.js"></script>
+    <script src="~/js/chart.js"></script>
+}

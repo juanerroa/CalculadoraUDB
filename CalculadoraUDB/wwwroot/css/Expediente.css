@@ -1,0 +1,74 @@
+﻿#expedienteTbl th {
+    text-align: left !important;
+}
+
+#expedienteTbl td {
+    padding-left: 20px;
+}
+
+    #expedienteTbl td:nth-child(2),
+    #expedienteTbl td:nth-child(6) {
+        padding-left: 32px;
+    }
+
+    #expedienteTbl td:nth-child(5) {
+        padding-left: 50px;
+    }
+
+#expedienteTbl {
+    border-bottom: none !important;
+}
+
+input[type="search"] {
+    border: 1px solid #333 !important;
+    border-radius: 25px;
+    height: 1px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#anio,
+#expedienteTbl td:nth-child(1) {
+    padding-right: 0px !important;
+    width: 50px;
+}
+
+#ciclo,
+#expedienteTbl td:nth-child(2) {
+    padding-right: 0px !important;
+    width: 50px;
+}
+
+#codigo,
+#expedienteTbl td:nth-child(3) {
+    padding-right: 0px !important;
+    width: 100px;
+}
+
+#asignatura,
+#expedienteTbl td:nth-child(4) {
+    padding-right: 0px !important;
+    width: 250px;
+}
+
+#matricula,
+#expedienteTbl td:nth-child(5) {
+    padding-right: 0px !important;
+    width: 100px;
+}
+
+#nota,
+#expedienteTbl td:nth-child(6) {
+    padding-right: 0px !important;
+    width: 75px;
+}
+
+#resultado,
+#expedienteTbl td:nth-child(7) {
+    padding-right: 0px !important;
+    width: 100px;
+}
+
+#eliminarMateria {
+    margin-left: 5px;
+}

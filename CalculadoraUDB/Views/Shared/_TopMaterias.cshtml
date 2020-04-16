@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CalculadoraUDB.Models.MateriaExpediente>
+
+<table class="table table-responsive table-bordered">
+    <thead>
+        <tr>
+            <th width="60">Año</th>
+            <th>Ciclo</th>
+            <th width="100">Codigo</th>
+            <th width="1000">Asignatura</th>
+            <th>Matricula</th>
+            <th width="80">Nota</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var materia in Model)
+            {
+                <tr>
+                    <td>@Html.Raw(materia.Anio)</td>
+                    <td>@Html.Raw(materia.Ciclo)</td>
+                    <td>@Html.Raw(materia.Codigo)</td>
+                    <td>@Html.Raw(materia.Asignatura)</td>
+                    <td>@Html.Raw(materia.Matricula)</td>
+                    <td>@Html.Raw(materia.Nota)</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

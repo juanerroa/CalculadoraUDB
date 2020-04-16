@@ -1,0 +1,160 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculadora UDB | Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="~/images/favicon.ico" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Login/main.css">
+</head>
+
+<body>
+
+    @await Html.PartialAsync("_MiPerfil")
+
+    <div id="snoAlertBox" class="alert alert-danger" data-alert="alert">Datos incorrectos</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="problemasModal" tabindex="-1" role="dialog" aria-labelledby="problemasLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Problemas para entrar?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-justify">
+                    <p>
+                        Para realizar cada uno de los cálculos dentro de la aplicación es necesario establecer una conexión con su perfil del portal
+                        académico de la universidad, por lo que es necesario que el carnet y password ingresados en esta aplicación sean los mismos
+                        que utiliza en el <a style="color:blue" target="_blank" href="https://admacad.udb.edu.sv/portalweb/">Portal Academico</a>
+                    </p>
+                    <br />
+                    <p>
+                        No obstante si ha ingresado los datos correctos dentro de la aplicación por favor enviar un ticket
+                        al soporte con la información necesaria para trabajar en una solución a su problema.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic">
+                    <br>
+                    <span class="login-preguntas-title">
+                        ¿Cómo iniciar sesión?
+                    </span>
+                    <br><br>
+                    <div class="justify-text">
+                        <p class="login-preguntas-respuestas">
+                            Esta herramienta hace uso de las credenciales del portal academico de la universidad para obtener la información del estudiante, debido a esto es necesario su carnet y contraseña con la cual usted accede al <a style="color:blue" target="_blank" href="https://admacad.udb.edu.sv/portalweb/">Portal Academico</a>.
+                        </p>
+                    </div>
+                    <br><br>
+                    <span class="login-preguntas-title">
+                        ¿Cómo funciona?
+                    </span>
+                    <br><br>
+                    <div class="justify-text">
+                        <p class="login-preguntas-respuestas">
+                            Para calcular el Coeficiente  de  Unidades  de  Mérito <b>(CUM)</b> esta herramienta utiliza la siguiente formula:
+                            <br><br>
+                        </p>
+                        <div class="text-center">
+                            <img width="150" src="~/images/formula.png" /><br>
+                        </div>
+                        <p class="login-preguntas-respuestas">
+                            Donde: <br>
+                            U.M =  Nota final de cada asignatura x U.V.<br>
+                            U.V =  Unidades Valorativas según el plan de estudios.<br><br>
+                            Esta herramienta muestra el resultado del cum aproximado a futuro según las materias que usted ingrese a la calculadora junto con la nota con la que terminara las materias.
+                        </p>
+                    </div>
+                </div>
+
+                <form asp-action="TryToLogin" method="post" class="login100-form validate-form">
+                    <div class="login100-form-title js-tilt">
+                        <img class="logo-image" src="~/images/logo.png" alt="IMG"><br />
+                        <span>
+                            Calculadora UDB
+                        </span>
+                    </div>
+
+
+                    <div class="wrap-input100 validate-input" data-validate="El carnet debe contener 2 letras seguido por 6 numeros. Ej: AB123456">
+                        <input class="input100" type="text" id="carnet" name="carnet" placeholder="Carnet">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
+                        <input class="input100" type="password" id="password" name="password" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button id="submitBtn" type="submit" class="login100-form-btn">
+                            INICIAR SESION
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-12">
+                        <a onclick="ToggleProblemasModal()" class="txt2">
+                            ¿Problemas para entrar?
+                        </a>
+                    </div>
+
+                    <div class="text-center p-t-136">
+                        <a class="txt2">
+                            <i class="fa fa-comments m-l-5" aria-hidden="true"></i>
+                            Enviar Ticket
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            Desarrollador: Juan Carlos Erroa Molina<br>
+            Ingeniero en Ciencias de la Computación
+        </p>
+    </footer>
+
+    <script src="~/Login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Login/vendor/select2/select2.min.js"></script>
+    <script src="~/Login/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <script src="~/js/login.js"></script>
+</body>
+</html>
