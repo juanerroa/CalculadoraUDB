@@ -17513,7 +17513,6 @@ input:focus {
         }
 
         .sidebar .user-info p.name {
-            
         }
 
 p.nombre {
@@ -17561,7 +17560,7 @@ p.apellido {
 .sidebar .nav {
     display: block;
     padding: 0px 0px 10px 20px;
-    margin-top:-20px;
+    margin-top: -20px;
 }
 
     .sidebar .nav .item-category {
@@ -17635,43 +17634,48 @@ p.apellido {
         transition: all 0.25s ease-out;
     }
 
-        .row-offcanvas.row-offcanvas-right {
-            right: 0;
+    .row-offcanvas.row-offcanvas-right {
+        left: 0;
+    }
+
+        .row-offcanvas.row-offcanvas-right .sidebar-offcanvas {
+            left: -100%;
         }
 
-            .row-offcanvas.row-offcanvas-right .sidebar-offcanvas {
-                right: -100%;
-            }
-
-            .row-offcanvas.row-offcanvas-right.active {
-                right: 50%;
-            }
-
-                .row-offcanvas.row-offcanvas-right.active .sidebar-offcanvas {
-                    right: -50%;
-                }
-
-        .row-offcanvas.row-offcanvas-left {
-            left: 0;
+        .row-offcanvas.row-offcanvas-right.active {
+            left: 50%;
         }
 
-            .row-offcanvas.row-offcanvas-left .sidebar-offcanvas {
-                left: -100%;
+            .row-offcanvas.row-offcanvas-right.active .sidebar-offcanvas {
+                left: -50%;
             }
 
-            .row-offcanvas.row-offcanvas-left.active {
-                left: 50%;
-            }
+    .row-offcanvas.row-offcanvas-left {
+        right: 0;
+    }
 
-                .row-offcanvas.row-offcanvas-left.active .sidebar-offcanvas {
-                    left: -50%;
-                }
-
-        .row-offcanvas .sidebar-offcanvas {
-            position: absolute;
-            top: 0;
-            width: 50%;
+        .row-offcanvas.row-offcanvas-left .sidebar-offcanvas {
+            right: -100%;
         }
+
+        .row-offcanvas.row-offcanvas-left.active {
+            right: 50%;
+        }
+
+            .row-offcanvas.row-offcanvas-left.active .sidebar-offcanvas {
+                right: -50%;
+            }
+
+    .navbar-menu-wrapper {
+        transform:translateX(70px);
+        position: absolute;
+    }
+
+    .row-offcanvas .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -18266,11 +18270,6 @@ pre {
     background: #636c72 er;
     padding: 15px;
     font-size: 14px;
-}
-
-
-.navbar.fixed-top + .container-fluid {
-    padding-top: 3.5rem;
 }
 
 @media (min-width: 992px) {
