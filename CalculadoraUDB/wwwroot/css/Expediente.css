@@ -72,3 +72,25 @@ input[type="search"] {
 #eliminarMateria {
     margin-left: 5px;
 }
+
+
+
+
+
+@media screen and (max-width: 991px) {
+    #expedienteTbl td:nth-child(8) {
+        text-align: center;
+    }
+
+        #expedienteTbl td:nth-child(8) button {
+            margin-bottom: 10px;
+        }
+
+    .title-card {
+        text-align: center;
+    }
+
+    .buttons {
+        transform: translateX(28%);
+    }
+}

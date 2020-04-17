@@ -5,12 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-
 <style>
     .datoEstudiante {
         padding: 0px 10px 0px 10px;
@@ -45,7 +39,7 @@
                     <h3 class="card-title mb-4">Estaditicas del estudiante</h3>
                 </div>
                 <div class="row">
-                    <div class="perfil col-3 float-left">
+                    <div class="perfil col-xl-3 float-left">
                         <div class="text-center">
                             <img class="mt-3" src="@Model.Perfil.TutorImage" alt=""><br />
                             <strong>Tutor:</strong> @Model.Perfil.TutorNombre
@@ -98,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="charts col float-right">
+                    <div class="charts col-xl-9 float-right">
                         <figure class="highcharts-figure">
                             <div id="container"></div>
                         </figure>
@@ -139,6 +133,10 @@
 </div>
 
 @section Scripts{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="~/js/graficos.js"></script>
     <script src="~/js/OpcionesExpediente.js"></script>
-    <script src="~/js/chart.js"></script>
 }

@@ -35,7 +35,6 @@ $(document).ready(function () {
             {
                 defaultContent: '<button id="editMateriaBtn" class="btn btn-warning">Editar</button>'
                               + '<button id="deleteMateriaBtn" class="btn btn-danger ml-2">Eliminar</button>'
-
             }
         ],
         "serverSide": "true",

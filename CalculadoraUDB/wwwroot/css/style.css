@@ -9171,10 +9171,13 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+.sidebarImgPerfil{
+    margin-top: 10px !important;
+}
+
 @media print {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         text-shadow: none !important;
         box-shadow: none !important;
     }
@@ -12558,6 +12561,10 @@ tbody.collapse.show {
         .navbar-expand-lg .navbar-toggler {
             display: none;
         }
+
+    .row-offcanvas.row-offcanvas-left.active {
+        right: 50%;
+    }
 }
 
 @media (max-width: 1199px) {
@@ -17539,7 +17546,7 @@ p.apellido {
 
 .sidebar .user-info span.online {
     border-radius: 3px;
-    background: #009d20;
+    background: #17a2b8;
     margin: auto;
     text-align: center;
     color: #fff;
@@ -17547,7 +17554,7 @@ p.apellido {
     padding-top: 1px;
     padding-bottom: 1px;
     letter-spacing: 2px;
-    text-shadow: 0.5px 0.5px 5px #000000;
+    text-shadow: 2px 2px 8px #000;
 }
 
     .sidebar .user-info span.online:after {
@@ -17595,13 +17602,14 @@ p.apellido {
         }
 
         .sidebar .nav .nav-item a.nav-link img {
-            width: 16px;
-            height: 16px;
+            width: 32px;
+            height: 32px;
             margin-right: 15px;
         }
 
         .sidebar .nav .nav-item a.nav-link .menu-title {
             display: inline-block;
+            margin-top:5px;
         }
 
             .sidebar .nav .nav-item a.nav-link .menu-title .fa {
@@ -17634,6 +17642,10 @@ p.apellido {
         transition: all 0.25s ease-out;
     }
 
+    #carreraSidebar{
+        padding-right:5px;
+    }
+
     .row-offcanvas.row-offcanvas-right {
         left: 0;
     }
@@ -17643,7 +17655,7 @@ p.apellido {
         }
 
         .row-offcanvas.row-offcanvas-right.active {
-            left: 50%;
+            left: 55%;
         }
 
             .row-offcanvas.row-offcanvas-right.active .sidebar-offcanvas {
@@ -18307,6 +18319,10 @@ pre {
             .sidebar-icon-only .sidebar .nav .nav-item {
                 position: relative;
             }
+
+    .sidebar-icon-only .nav {
+        margin-top: 55px;
+    }
 
                 .sidebar-icon-only .sidebar .nav .nav-item .nav-link {
                     text-align: center;

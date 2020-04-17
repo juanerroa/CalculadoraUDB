@@ -78,3 +78,12 @@
     cursor: pointer;
     padding: 5px;
 }
+
+@media screen and (max-width: 991px) {
+    #infoModal .modal-dialog {
+        max-width: 100%;
+    }
+    #reestablecerModal .modal-dialog {
+        max-width: 62%;
+    }
+}

@@ -2,6 +2,16 @@
     $('body').toggleClass('sidebar-icon-only');
 });
 
+(function ($) {
+    'use strict';
+    $(function () {
+        $('[data-toggle="offcanvas"]').on("click", function () {
+            $('.row-offcanvas').toggleClass('active')
+        });
+    });
+})(jQuery);
+
+
 function closeSnoAlertBox() {
     window.setTimeout(function () {
         $("#snoAlertBox").fadeOut(300)
